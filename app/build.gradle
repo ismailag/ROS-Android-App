@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 23
+    buildToolsVersion '22.0.1'
+
+    defaultConfig {
+        applicationId "com.example.ismail.app3"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+}
+repositories {
+    maven {
+        url 'https://download.01.org/crosswalk/releases/crosswalk/android/maven2'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+    compile files('libs/socketio.jar')
+    compile 'com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:0.7.0'
+ //   compile 'org.xwalk:xwalk_core_library_beta:15.44.384.7'
+    compile 'org.xwalk:xwalk_core_library_beta:18.48.477.11'
+}
