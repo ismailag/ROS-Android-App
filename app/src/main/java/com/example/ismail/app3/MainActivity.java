@@ -2,9 +2,10 @@ package com.example.ismail.app3;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.SeekBar;
 
+import android.widget.SeekBar;
+//socket.io on android is made by gottox
+//source : https://github.com/Gottox/socket.io-java-client
 import io.socket.IOAcknowledge;
 import io.socket.IOCallback;
 import io.socket.SocketIO;
@@ -15,13 +16,8 @@ import io.socket.SocketIOException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.InetAddress;
+
 import java.net.MalformedURLException;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-
-import java.util.Enumeration;
-
 import org.xwalk.core.XWalkView;
 
 public class MainActivity extends AppCompatActivity {
@@ -94,29 +90,8 @@ public class MainActivity extends AppCompatActivity {
        String imageUrl ="http://192.168.0.201:8181/stream?topic=/camera/rgb/image_raw&quality=65";
       String stream="<img src="+imageUrl+" style=\"display: inline; height: 100%; width:100%\" />" ;
         xWalkWebView=(XWalkView)findViewById(R.id.xwalkWebView);
-        xWalkWebView.load("http://192.168.1.2/demos/streamingtest.html?stream=1",null);
+        xWalkWebView.load(null,stream); // streaming loaded
         xWalkWebView.setBackgroundColor(Color.TRANSPARENT);
-
-    }
-
-
-
-    public static byte[] getLocalIPAddress () {
-        byte ip[]=null;
-        try {
-            for (Enumeration en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
-                NetworkInterface intf = (NetworkInterface)en.nextElement();
-                for (Enumeration enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
-                    InetAddress inetAddress = (InetAddress)enumIpAddr.nextElement();
-                    if (!inetAddress.isLoopbackAddress()) {
-                        ip= inetAddress.getAddress();
-                    }
-                }
-            }
-        } catch (SocketException ex) {
-            Log.i("SocketException ", ex.toString());
-        }
-        return ip;
 
     }
 

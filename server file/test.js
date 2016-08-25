@@ -31,7 +31,6 @@ server.sockets.on('connection', function(socket) {
    
     
 socket.on('move1',function(val,vel) {
-	//twist.linear.x=Math.max(0,1-0.02*(100-val));	
 	
 	vel=(vel-50)*0.02 ;	var x=vel/50 ;
 	if (val<50 && vel>0)	
