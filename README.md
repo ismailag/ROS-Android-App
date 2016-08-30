@@ -1,4 +1,3 @@
-# ROS-Android-App
 Welcome to the ROS-Android-App wiki!
 To try this App you have to run the server file on the robot side , therefore you have to install on the robot side :
 * ROS Bridge  
@@ -11,7 +10,9 @@ To try this App you have to run the server file on the robot side , therefore yo
 (the app is incompatible with newer versions ) <br>
 ```sudo apt-get install npm``` <br>
 `npm install socket.io@0.9.16` <br>
-
+* RoslibJs <br>
+`sudo npm install roslib` <br>
+<br>
 Now to run the server file you should : <br>
 * Run roscore <br>
 `roscore &` <br>
