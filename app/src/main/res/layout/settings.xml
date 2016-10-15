@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@android:style/Theme.Holo.Dialog"  >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Set your Server&apos;s adress"
+        android:id="@+id/textView8"
+        android:textColor="@color/abc_primary_text_material_light"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="4dp"
+       android:paddingLeft="20dp"
+        />
+
+    <EditText
+        android:id="@+id/username"
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        android:textColor="@color/abc_primary_text_material_light"
+        />
+
+</LinearLayout>
