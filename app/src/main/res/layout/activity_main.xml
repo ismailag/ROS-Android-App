@@ -12,9 +12,17 @@
     tools:context="com.example.ismail.app3.MainActivity"
     android:padding="0dp"
     android:keepScreenOn="true"
+    android:label="My new title"
 
     >
-
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:elevation="4dp"
+        android:theme="@style/MyActionBarTheme"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"/>
 
     <org.xwalk.core.XWalkView
         android:id="@+id/xwalkWebView"
@@ -153,5 +161,8 @@
             android:id="@+id/textView7"
             android:layout_gravity="center_vertical"
             android:textColor="#4fa3fc" />
+
     </LinearLayout>
+
+
 </RelativeLayout>

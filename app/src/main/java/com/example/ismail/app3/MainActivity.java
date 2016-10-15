@@ -3,83 +3,43 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.SeekBar;
 //socket.io on android is made by gottox
 //source : https://github.com/Gottox/socket.io-java-client
 import io.socket.IOAcknowledge;
 import io.socket.IOCallback;
 import io.socket.SocketIO;
-import io.socket.SocketIOException;
-
-
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-
 import java.net.MalformedURLException;
 import org.xwalk.core.XWalkView;
 
 public class MainActivity extends AppCompatActivity {
     private static SeekBar seek,seekv;
     private XWalkView xWalkWebView;
-
+   // private static String server_ad ;
     private boolean done=true ;
-    protected SocketIO socket ;
+    protected static SocketIO socket ;
 
-    {
+  /*  {
         try {
             socket = new SocketIO("http://192.168.0.201:8080"); // connect to the server
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main );
-        socket.connect(new IOCallback() {
 
-            @Override
-            public void onMessage(JSONObject json, IOAcknowledge ack) {
-                try {
-                    System.out.println("Server said:" + json.toString(2));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onMessage(String data, IOAcknowledge ack) {
-                System.out.println("Server said: " + data);
-            }
-
-            @Override
-            public void onError(SocketIOException socketIOException) {
-                System.out.println("an Error occured");
-                socketIOException.printStackTrace();
-            }
-
-            @Override
-            public void onDisconnect() {
-                System.out.println("Connection terminated.");
-            }
-
-            @Override
-            public void onConnect() {
-                System.out.println("Connection established");
-
-            }
-
-            @Override
-            public void on(String event, IOAcknowledge ack, Object... args) {
-                System.out.println("Server triggered event '" + event + "'");
-            }
-        });
-
-
+        connection("http://197.168.1.3:8080");
         new Thread(new Runnable() {
             public void run(){
                 seek_bar() ;
@@ -87,12 +47,16 @@ public class MainActivity extends AppCompatActivity {
         }).start();
 // crosswalk is an enhanced webview (more fluid than the native one) ,
 // so you can easily open webcontent inside a native android application
-       String imageUrl ="http://192.168.0.201:8181/stream?topic=/camera/rgb/image_raw&quality=65";
+       String imageUrl ="http://192.168.1.3:8181/stream?topic=/camera/rgb/image_raw&quality=65";
       String stream="<img src="+imageUrl+" style=\"display: inline; height: 100%; width:100%\" />" ;
         xWalkWebView=(XWalkView)findViewById(R.id.xwalkWebView);
         xWalkWebView.load(null,stream); // streaming loaded
         xWalkWebView.setBackgroundColor(Color.TRANSPARENT);
 
+        setTitle("");
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        showdia(getWindow().getDecorView().getRootView()) ;
     }
 
 
@@ -168,5 +132,55 @@ public class MainActivity extends AppCompatActivity {
                 }
         ) ;
 
-    }}
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater() ;
+        inflater.inflate(R.menu.main_menu,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.settings:
+                showdia(getWindow().getDecorView().getRootView()) ;
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+public void showdia(View view)
+{
+    settings obj= new settings() ;
+    obj.show(getFragmentManager(),"My settings");
+}
+
+    public void connection (String server_ad )
+    {
+        socket = new SocketIO();
+        if (socket.isConnected())
+        {
+            socket.disconnect();
+        }
+        try {
+            socket.connect(server_ad, new Socket());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        /*String imageUrl ="http://192.168.0.201:8181/stream?topic=/camera/rgb/image_raw&quality=65";
+        String stream="<img src="+imageUrl+" style=\"display: inline; height: 100%; width:100%\" />" ;
+        xWalkWebView=(XWalkView)findViewById(R.id.xwalkWebView);
+        xWalkWebView.load(null,stream);*/
+    }
+
+
+}
+
+
+
+
 

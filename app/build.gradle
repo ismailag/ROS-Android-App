@@ -5,7 +5,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.ismail.app3"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -38,4 +38,5 @@ dependencies {
     compile 'com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:0.7.0'
  //   compile 'org.xwalk:xwalk_core_library_beta:15.44.384.7'
     compile 'org.xwalk:xwalk_core_library_beta:18.48.477.11'
+    compile 'com.android.support:appcompat-v7:23.+'
 }
